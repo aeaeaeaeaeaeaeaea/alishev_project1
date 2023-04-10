@@ -17,11 +17,14 @@
 
 
 <div th:if="${!personList.isEmpty()}">
-    <table th:each="books : ${personList}">
-        <tr th:text="${books.getName() + ', ' + books.getAuthor() + ', ' + books.getYear()}">user</tr>
+    <table>
+        <tr th:each="book : ${personList}">
+            <td th:text="${book.getName() + ', ' + book.getAuthor() + ', ' + book.getYear()}"></td>
+        </tr>
     </table>
     <hr/>
 </div>
+
 
 
 <form th:method="GET" th:action="@{/people/{id}/edit(id=${personPage.getId()})}">

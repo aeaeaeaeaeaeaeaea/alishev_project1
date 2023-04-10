@@ -1,11 +1,39 @@
 package ru.ae.libapp.model;
 
+
+import javax.persistence.*;
+import java.util.Date;
+
+@Entity
+@Table(name = "book")
 public class Book {
 
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @ManyToOne
+    @JoinColumn(name = "person_id", referencedColumnName = "id")
+    private Person owner;
+
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "author")
     private String author;
+
+    @Column(name = "year")
     private int year;
+
+
+    public Person getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Person owner) {
+        this.owner = owner;
+    }
 
     public Book(String name, String author, int year, int id) {
         this.id = id;
